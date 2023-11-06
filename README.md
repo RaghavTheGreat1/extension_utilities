@@ -34,11 +34,6 @@ Import the package
 ```dart
 import 'package:extension_utilities/extension_utilities.dart';
 
-
-
-<!-- ## Usage
-
-```dart
 final fruits = ["mango", "banana", "orange"];
 print(fruits.random());
 ```
