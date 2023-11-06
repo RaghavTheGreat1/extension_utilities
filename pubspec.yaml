@@ -1,7 +1,7 @@
-name: extension_utils
-description: A starting point for Dart libraries or applications.
+name: extension_utilities
+description: A library of extension utilities on existing dart core
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/RaghavTheGreat1/extension_utilities.git
 
 environment:
   sdk: ^3.1.0

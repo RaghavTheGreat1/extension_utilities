@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "extension_utils",
+            "name": "extension_utilities",
             "request": "launch",
             "type": "dart"
         }

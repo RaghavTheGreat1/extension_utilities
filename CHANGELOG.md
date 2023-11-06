@@ -1,3 +1,4 @@
 ## 1.0.0
 
-- Initial version.
+- Initial Release
+    - add .random() & .randomOrNull() methods on [List]
