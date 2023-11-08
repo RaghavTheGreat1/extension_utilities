@@ -9,5 +9,5 @@ void main() {
   final set = {"Raghav", "Joshi", "@RaghavTheGreat1"};
   print(set.randomOrNull());
 
-  print(5.random());
+  print(10.random());
 }

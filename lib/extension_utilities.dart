@@ -3,6 +3,9 @@
 /// More dartdocs go here.
 library;
 
+export 'src/int.dart';
 export 'src/list.dart';
+export 'src/num.dart';
+export 'src/set.dart';
 
 // TODO: Export any libraries intended for clients of this package.
