@@ -36,4 +36,25 @@ extension ListExtension<E> on List<E> {
 
     return this[randomIndex];
   }
+
+  /// Inserts an element into the list at the specified index.
+  E get(
+    int index,
+  ) {
+    assert(index < length, "Index should be less than the size of the list");
+
+    return this[index];
+  }
+
+  /// Replaces the element at the specified position in this list with the specified element.
+  /// Returns: the element previously at the specified position.
+  E set(
+    int index,
+    E element,
+  ) {
+    assert(index < length, "Index should be less than the size of the list");
+    final previousElement = this[index];
+    this[index] = element;
+    return previousElement;
+  }
 }
