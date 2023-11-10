@@ -15,6 +15,16 @@ A library of extension utils on existing dart core.
 
 ## Features
 
+
+### - String:
+    - toInt()
+    - tryToInt()
+    - toDouble()
+    - tryToDouble()
+    - toBool()
+    - tryToBool()
+
+
 ### - List:
     - random()
     - randomOrNull()
