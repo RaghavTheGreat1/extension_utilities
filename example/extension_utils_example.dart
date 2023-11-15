@@ -8,4 +8,6 @@ void main() {
   print(set.randomOrNull());
 
   print(10.random());
+
+  print("india lifts the World cup in 2023".capitalizeAllWords());
 }

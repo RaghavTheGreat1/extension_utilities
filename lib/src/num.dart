@@ -18,10 +18,19 @@ extension NumExtension on num {
   Duration get milliseconds => (this * 1000).microseconds;
 
   /// Returns [Duration] with specified number
+  Duration get s => (this * 1000 * 1000).microseconds;
+
+  /// Returns [Duration] with specified number
   Duration get seconds => (this * 1000 * 1000).microseconds;
 
   /// Returns [Duration] with specified number
+  Duration get mins => (this * 1000 * 1000 * 60).microseconds;
+
+  /// Returns [Duration] with specified number
   Duration get minutes => (this * 1000 * 1000 * 60).microseconds;
+
+  /// Returns [Duration] with specified number
+  Duration get hrs => (this * 1000 * 1000 * 60 * 60).microseconds;
 
   /// Returns [Duration] with specified number
   Duration get hours => (this * 1000 * 1000 * 60 * 60).microseconds;

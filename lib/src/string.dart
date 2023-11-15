@@ -1,4 +1,14 @@
 extension StringExtension on String {
+  /// Checks if the [String] is [int] or not
+  bool get isInt {
+    try {
+      toInt();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   /// Parse [source] as a, possibly signed, integer literal and return its value.
   ///
   /// The [source] must be a non-empty sequence of base-[radix] digits,
@@ -71,6 +81,16 @@ extension StringExtension on String {
     return int.tryParse(this, radix: radix);
   }
 
+  /// Checks if the [String] is [double] or not
+  bool get isDouble {
+    try {
+      toDouble();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   /// Parse [source] as a double literal and return its value.
   ///
   /// Accepts an optional sign (`+` or `-`) followed by either the characters
@@ -127,6 +147,9 @@ extension StringExtension on String {
   double? tryToDouble() {
     return double.tryParse(this);
   }
+
+  /// Checks if the [String] is boolean.
+  bool get isBool => (this == 'true' || this == 'false');
 
   /// Parses [source] as an, optionally case-insensitive, boolean literal.
   ///
@@ -191,4 +214,44 @@ extension StringExtension on String {
   bool? tryToBool({bool caseSensitive = true}) {
     return bool.tryParse(this, caseSensitive: caseSensitive);
   }
+
+  /// Capitalizes first letter of a [String] while persisting the case of rest of it.
+  ///
+  /// Example:
+  ///
+  /// raghav joshi -> Raghav joshi
+  ///
+  /// virat Kohli goes for 100 -> Virat Kohli goes for 100
+  ///
+  String capitalize() {
+    if (isEmpty) return this;
+    return "${this[0].toUpperCase()}${substring(1)}";
+  }
+
+  /// Returns capitalized version of the [String].
+  ///
+  /// Example:
+  ///
+  /// raghav joshi -> Raghav Joshi
+  ///
+  String capitalizeAllWords() {
+    if (isEmpty) return this;
+    return split(' ').map((e) => e.capitalize()).join(' ');
+  }
+
+  /// Checks whether this regular expression has a match in the [pattern].
+  bool hasMatch(String pattern) {
+    return RegExp(pattern).hasMatch(this);
+  }
+
+  /// Checks if [String] consists of only digits [0-9].
+  bool get containsOnlyNumbers => hasMatch(r'^[0-9]+$');
+
+  /// Checks if string consist only alphabets [a-z or A-Z] while not allowing
+  /// whitespace characters (spaces, tabs, newlines).
+  bool get containsOnlyAlphabets => hasMatch(r'^[a-zA-Z]+$');
+
+  /// Checks if string consist only alphabets [a-z or A-Z] while not allowing
+  /// whitespace characters (spaces, tabs, newlines).
+  bool get containsOnlyAlphabetsAndSpace => hasMatch(r'^[a-zA-Z\s]+$');
 }

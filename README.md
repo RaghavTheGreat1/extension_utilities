@@ -17,17 +17,47 @@ A library of extension utils on existing dart core.
 
 
 ### - String:
-    - toInt()
-    - tryToInt()
-    - toDouble()
-    - tryToDouble()
-    - toBool()
-    - tryToBool()
+    - .isInt
+    - .toInt()
+    - .tryToInt()
+    - .isDouble
+    - .toDouble()
+    - .tryToDouble()
+    - .isBool
+    - .toBool()
+    - .tryToBool()
+
+    - .containsOnlyNumbers
+    - .containsOnlyAlphabets
+    - .containsOnlyAlphabetsAndSpace
+
+    - .capitalize()
+    - .capitalizeAllWords()
 
 
 ### - List:
-    - random()
-    - randomOrNull()
+    - .random()
+    - .randomOrNull()
+    - .get()
+    - .set()
+
+### - Num:
+
+    - .toFixed()
+
+
+    - .microseconds
+    - .ms
+    - .milliseconds
+    - .s
+    - .seconds
+    - .mins
+    - .minutes
+    - .hrs
+    - .hours
+    - .days
+
+
 
 ## Getting started
 
