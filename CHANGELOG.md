@@ -1,3 +1,8 @@
+## 1.1.0
+
+- add .ms, .millisecond, .s, .seconds, .mins, .minutes, .hr, .hours,  on num that returns [Duration]
+
+
 ## 1.0.2
 
 - add .toInt() & .tryToInt() method on [String]
