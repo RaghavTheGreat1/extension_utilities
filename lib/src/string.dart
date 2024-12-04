@@ -254,4 +254,158 @@ extension StringExtension on String {
   /// Checks if string consist only alphabets [a-z or A-Z] while not allowing
   /// whitespace characters (spaces, tabs, newlines).
   bool get containsOnlyAlphabetsAndSpace => hasMatch(r'^[a-zA-Z\s]+$');
+
+  /// Checks if string is a valid email address
+  bool get isEmail => hasMatch(
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
+      );
+
+  /// Checks if string is a valid URL
+  bool get isUrl => hasMatch(
+        r'^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$',
+      );
+
+  /// Checks if string is a valid phone number
+  bool get isPhoneNumber => hasMatch(r'^\+?[\d-]{8,}$');
+
+  /// Checks if string contains only whitespace
+  bool get isWhitespace => trim().isEmpty;
+
+  /// Checks if string is a valid IPv4 address
+  bool get isIPv4 => hasMatch(
+        r'^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$',
+      );
+
+  /// Checks if string is a valid hexadecimal color code
+  bool get isHexColor => hasMatch(r'^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$');
+
+  /// Checks if string is a valid date in yyyy-mm-dd format
+  bool get isDate => hasMatch(
+        r'^\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])$',
+      );
+
+  /// Converts string to camelCase
+  String toCamelCase() {
+    if (isEmpty) return this;
+    final words = trim().split(RegExp(r'[\s_-]'));
+    final capitalizedWords = words.map((word) {
+      if (word.isEmpty) return '';
+      final first = word[0].toUpperCase();
+      final rest = word.substring(1).toLowerCase();
+      return '$first$rest';
+    }).toList();
+    final first = words[0].toLowerCase();
+    final rest = capitalizedWords.skip(1).join();
+    return '$first$rest';
+  }
+
+  /// Converts string to snake_case
+  String toSnakeCase() {
+    if (isEmpty) return this;
+    final exp = RegExp(r'(?<=[a-z])[A-Z]');
+    return toLowerCase().replaceAllMapped(
+      exp,
+      (Match m) => '_${m.group(0)}',
+    );
+  }
+
+  /// Converts string to kebab-case
+  String toKebabCase() {
+    if (isEmpty) return this;
+    return toSnakeCase().replaceAll('_', '-');
+  }
+
+  /// Removes all whitespace from string
+  String removeAllWhitespace() => replaceAll(RegExp(r'\s+'), '');
+
+  /// Truncates string to specified length with optional suffix
+  String truncate(int length, {String suffix = '...'}) {
+    if (this.length <= length) return this;
+    return '${substring(0, length)}$suffix';
+  }
+
+  /// Reverses the string
+  String get reverse => split('').reversed.join();
+
+  /// Counts occurrences of a substring in string
+  int countOccurrences(String substring) {
+    if (substring.isEmpty) return 0;
+    int count = 0;
+    int position = 0;
+    while (true) {
+      position = indexOf(substring, position);
+      if (position == -1) break;
+      count++;
+      position += substring.length;
+    }
+    return count;
+  }
+
+  /// Checks if string contains only digits and letters
+  bool get isAlphanumeric => hasMatch(r'^[a-zA-Z0-9]+$');
+
+  /// Checks if string is palindrome (reads same forwards and backwards)
+  bool get isPalindrome {
+    final cleanStr = toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '');
+    return cleanStr == cleanStr.split('').reversed.join();
+  }
+
+  /// Extracts all numbers from string
+  List<String> extractNumbers() {
+    return RegExp(r'\d+').allMatches(this).map((m) => m.group(0)!).toList();
+  }
+
+  /// Converts first character to lowercase
+  String uncapitalize() {
+    if (isEmpty) return this;
+    return "${this[0].toLowerCase()}${substring(1)}";
+  }
+
+  /// Converts string to Title Case (capitalizes first letter of each word)
+  String toTitleCase() {
+    if (isEmpty) return this;
+    return split(' ')
+        .map((word) => word.isEmpty ? '' : word[0].toUpperCase() + word.substring(1).toLowerCase())
+        .join(' ');
+  }
+
+  /// Removes special characters from string
+  String removeSpecialCharacters() {
+    return replaceAll(RegExp(r'[^a-zA-Z0-9\s]'), '');
+  }
+
+  /// Checks if string contains at least one uppercase letter
+  bool get hasUpperCase => contains(RegExp(r'[A-Z]'));
+
+  /// Checks if string contains at least one lowercase letter
+  bool get hasLowerCase => contains(RegExp(r'[a-z]'));
+
+  /// Checks if string contains at least one number
+  bool get hasNumber => contains(RegExp(r'[0-9]'));
+
+  /// Checks if string contains at least one special character
+  bool get hasSpecialCharacters => contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+
+  /// Converts camelCase or PascalCase string to words with proper spacing
+  /// 
+  /// Examples:
+  /// ```dart
+  /// 'helloWorld'.camelCaseToWords(); // 'Hello World'
+  /// 'HelloWorld'.camelCaseToWords(); // 'Hello World'
+  /// 'ABC'.camelCaseToWords(); // 'ABC'
+  /// 'getURL'.camelCaseToWords(); // 'Get URL'
+  /// 'userId'.camelCaseToWords(); // 'User Id'
+  /// ```
+  String camelCaseToWords() {
+    if (isEmpty) return this;
+    
+    // Handle consecutive uppercase letters (like 'URL' in 'getURL')
+    final pattern = RegExp(r'(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])');
+    
+    // Split the string at pattern matches and join with space
+    final words = split(pattern);
+    
+    // Capitalize first letter of each word and join with spaces
+    return words.map((word) => word.capitalize()).join(' ');
+  }
 }
