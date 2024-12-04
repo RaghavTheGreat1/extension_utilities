@@ -1,6 +1,6 @@
 name: extension_utilities
 description: A library of extension utilities on existing dart core
-version: 1.2.0
+version: 1.2.1
 repository: https://github.com/RaghavTheGreat1/extension_utilities.git
 
 environment:
@@ -9,7 +9,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   # path: ^1.8.0
-  intl: ^0.18.0
+  intl: '>=0.17.0 <2.0.0'
 
 dev_dependencies:
   lints: ^2.0.0
